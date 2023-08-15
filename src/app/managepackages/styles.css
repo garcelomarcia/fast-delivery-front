@@ -1,0 +1,22 @@
+.dropdown-Controller-Container.active {
+  height: 18vh;
+  overflow: hidden;
+  display: block;
+  transition: height 0.5s ease;
+}
+
+.dropdown-Controller-Container {
+  height: inherit;
+}
+
+@media (max-width: 1024px) {
+  .dropdown-Controller-Container.active {
+    height: 20vh;
+  }
+}
+
+@media (max-width: 375px) {
+  .dropdown-Controller-Container.active {
+    height: 25vh;
+  }
+}

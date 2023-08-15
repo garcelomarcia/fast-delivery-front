@@ -1,0 +1,23 @@
+.controllDropdownHistory {
+  height: 12vh;
+  overflow: hidden;
+  display: block;
+}
+
+.controllDropdownHistory.active {
+  height: inherit;
+}
+
+.controllDropdownDelivery {
+  height: 12vh;
+  overflow: hidden;
+  display: block;
+}
+
+.controllDropdownDelivery.active {
+  height: inherit;
+}
+
+#delivery, #history {
+    cursor: pointer;
+}
