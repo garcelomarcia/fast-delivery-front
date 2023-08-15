@@ -35,27 +35,30 @@ const App: React.FC = () => {
     postalCode: "12345",
     lat: 40.7128,
     lng: -74.006,
-    status: "pending"
+    status: "pending",
   };
 
   const [paquete, setPaquete] = useState<Package>(initialPackage);
   const [isLoading, setIsLoading] = useState(true);
   const [location, setLocation] = useState<google.maps.LatLngLiteral>({
     lat: -22.977635749850354,
-    lng: -46.98865870252204
+    lng: -46.98865870252204,
   });
   const [origin, setOrigin] = useState({
     lat: -22.977635749850354,
-    lng: -46.98865870252204
+    lng: -46.98865870252204,
   });
 
   const fetchUser = async (token: string) => {
     try {
-      const response = await axios.get("https://fastdeliveryserver.xyz/api/user/me", {
-        headers: {
-          Authorization: `Bearer ${token}`
+      const response = await axios.get(
+        "https://fastdeliveryserver.xyz/api/user/me",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
       dispatch(setUser(response.data));
       return response.data;
     } catch (error) {
@@ -73,15 +76,15 @@ const App: React.FC = () => {
         `https://fastdeliveryserver.xyz/api/packages/${user.id}/packages`,
         {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       const packages = response.data.packages;
       const filtered = packages.filter((each: Package) => each.id === id);
       const destination: google.maps.LatLngLiteral = {
         lat: filtered[0].lat,
-        lng: filtered[0].lng
+        lng: filtered[0].lng,
       };
       setLocation(destination);
       setPaquete(filtered[0]);
@@ -121,12 +124,12 @@ const App: React.FC = () => {
       .put(
         `https://fastdeliveryserver.xyz/api/packages/${user.id}/edit/package/${id}`,
         {
-          status: "entregado"
+          status: "entregado",
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       )
       .then((response) => {
@@ -135,7 +138,7 @@ const App: React.FC = () => {
           text: `Entregaste el paquete a ${response.data.editedPackage.clientname}`,
           icon: "success",
           confirmButtonText: "Continuar a Repartos",
-          confirmButtonColor: "#217BCE"
+          confirmButtonColor: "#217BCE",
         });
         router.push("/");
       })
@@ -146,7 +149,7 @@ const App: React.FC = () => {
           title: "Error",
           text: "Ocurrió un error en el registro.",
           icon: "error",
-          confirmButtonColor: "#217BCE"
+          confirmButtonColor: "#217BCE",
         });
       });
   };
@@ -175,7 +178,7 @@ const App: React.FC = () => {
             </button>
           </section>
           <section className="">
-            <Map destination={location} />
+            <Map destination={location} origin={origin} />
           </section>
           <section className="flex flex-col py-4">
             <div className="flex">

@@ -3,7 +3,7 @@ import React from "react";
 import {
   useLoadScript,
   GoogleMap,
-  DirectionsRenderer
+  DirectionsRenderer,
 } from "@react-google-maps/api";
 import { useState, useEffect, ReactElement } from "react";
 import Spinner from "../Components/spinner";
@@ -11,43 +11,24 @@ import Spinner from "../Components/spinner";
 const mapOptions = {
   disableDefaultUI: true,
   clickableIcons: true,
-  scrollwheel: false
+  scrollwheel: false,
 };
 
 const googleMapsApiKey: string = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || "";
 
 const Mapa = ({
-  destination
+  destination,
+  origin,
 }: {
   destination: google.maps.LatLngLiteral;
+  origin: google.maps.LatLngLiteral;
 }): ReactElement => {
-  const [origin, setOrigin] = useState<google.maps.LatLngLiteral | null>(null);
   const [directions, setDirections] =
     useState<google.maps.DirectionsResult | null>(null);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey
+    googleMapsApiKey,
   });
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          setOrigin({ lat, lng });
-        },
-        () => {
-          alert({
-            icon: "warning",
-            text: "Necesita habilitar la geolocaclización en su dispositivo."
-          });
-        }
-      );
-    } else {
-      alert({ icon: "error", text: "La geolocalización no está disponible." });
-    }
-  }, []);
 
   useEffect(() => {
     if (!window.google || !origin) {
@@ -61,7 +42,7 @@ const Mapa = ({
         origin,
         destination,
         travelMode: google.maps.TravelMode.DRIVING,
-        unitSystem: google.maps.UnitSystem.METRIC
+        unitSystem: google.maps.UnitSystem.METRIC,
       },
       (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
