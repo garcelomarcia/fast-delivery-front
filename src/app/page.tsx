@@ -173,7 +173,7 @@ export default function HomePage() {
           <div className="flex justify-between mx-4">
             <p className="font-bold text-lg font-sans">Repartos En Curso</p>
             <Image
-              className={`self-start transition-transform transform ${
+              className={`self-start transition-transform transform cursor-pointer ${
                 onCourseDropdownOpen ? "rotate-180" : ""
               }`}
               src={dropdown}
@@ -192,7 +192,7 @@ export default function HomePage() {
               {onCourse.map((paquete: any) => {
                 return (
                   <div
-                    className="flex justify-between py-4 h-110px w-full"
+                    className="flex justify-between py-4 h-110px w-full cursor-pointer"
                     key={paquete.id}
                     onClick={handleDetail(paquete.id)}
                   >
@@ -235,7 +235,7 @@ export default function HomePage() {
           <div className="flex justify-between mx-4">
             <p className="font-bold text-lg font-sans">Repartos Pendientes</p>
             <Image
-              className={`self-start transition-transform transform ${
+              className={`self-start transition-transform transform cursor-pointer ${
                 pendingDropdownOpen ? "rotate-180" : ""
               }`}
               src={dropdown}
@@ -254,7 +254,7 @@ export default function HomePage() {
               {packages.pendiente.map((paquete: Package) => {
                 return (
                   <div
-                    className="flex justify-between py-4 h-110px w-full"
+                    className="flex justify-between py-4 h-110px w-full cursor-pointer"
                     key={paquete.id}
                   >
                     <Image
@@ -288,7 +288,7 @@ export default function HomePage() {
           <div className="flex justify-between mx-4">
             <p className="font-bold text-lg font-sans">Historial de Repartos</p>
             <Image
-              className={`self-start transition-transform transform ${
+              className={`self-start transition-transform transform cursor-pointer${
                 delliveredDropdownOpen ? "rotate-180" : ""
               }`}
               src={dropdown}
@@ -307,7 +307,7 @@ export default function HomePage() {
               {packages.entregado.map((paquete: Package) => {
                 return (
                   <div
-                    className="flex justify-between py-4 h-110px w-full"
+                    className="flex justify-between py-4 h-110px w-full cursor-pointer"
                     key={paquete.id}
                   >
                     <Image

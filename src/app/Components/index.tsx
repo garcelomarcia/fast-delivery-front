@@ -37,7 +37,7 @@ export function Navbar() {
           <span>DELIVERY</span>
         </h1>
       </div>
-      <div onClick={handleLogout}>
+      <div className={"cursor-pointer"} onClick={handleLogout}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
